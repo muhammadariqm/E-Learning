@@ -1,216 +1,354 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Login - E Learning Grand Line</title>
+    <title>Login - E Learning Grand Line</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap" rel="stylesheet">
 
-<style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body{
-margin:0;
-font-family:'Caesar Dressing', cursive;
+        /* BODY */
 
-background-image:url("/images/peta.png");
-background-size:cover;
-background-position:center;
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url("/images/peta.png");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-position:relative;
-}
+        /* overlay */
 
-/* overlay seperti landing */
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+        }
 
-body::before{
-content:"";
-position:absolute;
-inset:0;
-background:rgba(0,0,0,0.45);
-}
+        /* LOGIN BOX */
 
-/* box login */
+        .login-box {
 
-.login-box{
+            position: relative;
+            z-index: 2;
 
-position:relative;
-z-index:2;
+            background: rgba(255, 255, 255, 0.95);
 
-background:rgba(255,255,255,0.95);
+            padding: 45px 40px;
 
-padding:45px;
+            width: 90%;
+            max-width: 380px;
 
-width:360px;
+            border-radius: 16px;
 
-border-radius:16px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
 
-box-shadow:0 20px 50px rgba(0,0,0,0.4);
+            animation: fadeUp 1s ease;
 
-}
+            backdrop-filter: blur(6px);
 
-/* title */
+        }
 
-.login-box h2{
+        /* TITLE */
 
-font-family:'Caesar Dressing', cursive;
+        .login-box h2 {
 
-text-align:center;
+            font-family: 'Caesar Dressing', cursive;
 
-margin-bottom:30px;
+            text-align: center;
 
-color:rgb(180,138,60);
+            margin-bottom: 30px;
 
-font-size:32px;
+            color: rgb(180, 138, 60);
 
-}
+            font-size: 32px;
 
-/* input */
+            letter-spacing: 2px;
 
-.input-group{
-margin-bottom:18px;
-}
+        }
 
-.input-group label{
-display:block;
-margin-bottom:6px;
-font-size:14px;
-}
+        /* INPUT GROUP */
 
-.input-group input{
+        .input-group {
+            margin-bottom: 20px;
+        }
 
-width:100%;
+        .input-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            font-weight: 500;
+        }
 
-padding:12px;
+        /* INPUT */
 
-border:1px solid #ddd;
+        .input-group input {
 
-border-radius:8px;
+            width: 100%;
 
-outline:none;
+            padding: 12px 14px;
 
-font-size:14px;
+            border: 1px solid #ddd;
 
-transition:0.2s;
+            border-radius: 8px;
 
-}
+            outline: none;
 
-.input-group input:focus{
+            font-size: 14px;
 
-border-color:rgb(180,138,60);
+            transition: all .3s ease;
 
-box-shadow:0 0 5px rgba(180,138,60,0.4);
+        }
 
-}
+        /* INPUT FOCUS */
 
-/* button */
+        .input-group input:focus {
 
-.login-btn{
+            border-color: rgb(180, 138, 60);
 
-width:100%;
+            box-shadow: 0 0 8px rgba(180, 138, 60, 0.4);
 
-background:rgb(180,138,60);
+            transform: scale(1.02);
 
-color:rgb(210,197,173);
+        }
 
-font-family:'Caesar Dressing', cursive;
+        /* BUTTON */
 
-font-size:22px;
+        .login-btn {
 
-padding:12px;
+            width: 100%;
 
-border:none;
+            background: rgb(180, 138, 60);
 
-border-radius:25px;
+            color: rgb(255, 255, 255);
 
-cursor:pointer;
+            font-family: 'Caesar Dressing', cursive;
 
-transition:0.3s;
+            font-size: 20px;
 
-}
+            padding: 12px;
 
-.login-btn:hover{
+            border: none;
 
-background:rgb(150,115,50);
+            border-radius: 30px;
 
-transform:translateY(-2px);
+            cursor: pointer;
 
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
+            transition: all .3s ease;
 
-}
+            position: relative;
 
-/* arrow */
+            overflow: hidden;
 
-.login-btn::before{
-content:"< ";
-}
+        }
 
-.login-btn::after{
-content:" >";
-}
+        /* HOVER BUTTON */
 
-/* extra */
+        .login-btn:hover {
 
-.extra{
+            background: rgb(150, 115, 50);
 
-text-align:center;
+            transform: translateY(-3px);
 
-margin-top:18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 
-font-size:14px;
+        }
 
-}
+        /* BUTTON ARROW */
 
-.extra a{
+        .login-btn::before {
+            content: "< ";
+        }
 
-text-decoration:none;
+        .login-btn::after {
+            content: " >";
+        }
 
-color:rgb(180,138,60);
+        /* PLACEHOLDER */
 
-font-weight:500;
+        input::placeholder {
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+        }
 
-}
+        /* EXTRA */
 
-.extra a:hover{
-text-decoration:underline;
-}
+        .extra {
 
-</style>
+            text-align: center;
+
+            margin-top: 18px;
+
+            font-size: 14px;
+
+        }
+
+        .extra a {
+
+            text-decoration: none;
+
+            color: rgb(180, 138, 60);
+
+            font-weight: 500;
+
+            transition: .3s;
+
+        }
+
+        .extra a:hover {
+
+            text-decoration: underline;
+
+            color: rgb(150, 115, 50);
+
+        }
+
+        /* ANIMATION */
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        /* FLOATING MAP ANIMATION */
+
+        body::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background: url("/images/peta.png");
+
+            background-size: cover;
+
+            opacity: 0.08;
+
+            animation: mapMove 60s linear infinite;
+
+        }
+
+        @keyframes mapMove {
+
+            0% {
+                transform: scale(1) translateX(0);
+            }
+
+            50% {
+                transform: scale(1.05) translateX(-40px);
+            }
+
+            100% {
+                transform: scale(1) translateX(0);
+            }
+
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width:768px) {
+
+            .login-box {
+
+                padding: 35px 28px;
+
+                border-radius: 14px;
+
+            }
+
+            .login-box h2 {
+
+                font-size: 26px;
+
+            }
+
+            .login-btn {
+
+                font-size: 18px;
+
+            }
+
+        }
+
+        @media (max-width:480px) {
+
+            .login-box {
+
+                padding: 30px 22px;
+
+            }
+
+            .login-box h2 {
+
+                font-size: 24px;
+
+            }
+
+        }
+    </style>
 
 </head>
 
 <body>
 
-<div class="login-box">
+    <div class="login-box">
 
-<h2>Login</h2>
+        <h2>Login</h2>
 
-<form action="{{ route('login.submit') }}" method="POST">
-@csrf
+        <form action="{{ route('login.submit') }}" method="POST">
 
-<div class="input-group">
-<label>NIM</label>
-<input type="text" name="nim" placeholder="Masukkan NIM" required>
-</div>
+            @csrf
 
-<div class="input-group">
-<label>Password</label>
-<input type="password" name="password" placeholder="Masukkan password" required>
-</div>
+            <div class="input-group">
+                <label>NIM</label>
+                <input type="text" name="nim" placeholder="Masukkan NIM" required>
+            </div>
 
-<button type="submit" class="login-btn">
-LOGIN
-</button>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Masukkan password" required>
+            </div>
 
-</form>
+            <button type="submit" class="login-btn">
+                LOGIN
+            </button>
 
-</div>
+        </form>
+
+        <div class="extra">
+            Belum punya akun? <a href="#">Daftar</a>
+        </div>
+
+    </div>
 
 </body>
+
 </html>

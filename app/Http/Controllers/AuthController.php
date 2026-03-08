@@ -7,20 +7,25 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'nim' => 'required',
-            'password' => 'required'
-        ]);
-    
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->route('dashboard.index');
+        public function login(Request $request)
+        {
+            $credentials = $request->validate([
+                'nim' => 'required',
+                'password' => 'required'
+            ]);
+        
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
+        
+                if (Auth::user()->role === 'admin') {
+                    return redirect()->route('admin.dashboard');
+                }
+        
+                return redirect()->route('dashboard.index');
+            }
+        
+            return back()->with('error', 'NIM atau password salah');
         }
-    
-        return back()->with('error', 'NIM atau password salah');
-    }
 
         public function logout(Request $request)
         {
